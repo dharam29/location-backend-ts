@@ -66,7 +66,7 @@ export class Location extends Model<Location> {
   public updatedBy!: string;
 
   @Column
-  public updatedOn!: number;
+  public updatedOn!: string;
 }
 
 export default Location;

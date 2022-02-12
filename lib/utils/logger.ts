@@ -1,11 +1,10 @@
-const { createLogger, format, transports } = require('winston');
-const path = require('path');
-const moment = require('moment');
-
-const winston = require('winston');
+// import * as path from 'path';
+import { createLogger, format, transports } from 'winston';
 // require('winston-daily-rotate-file');
+import { DATE_FORMAT } from './constant';
+import moment = require('moment');
 
-const DATE_FORMAT = require('./constant');
+import winston = require('winston');
 
 const getLabel = (callingModule) => {
   const parts = callingModule.split('/');
@@ -24,10 +23,10 @@ const Logger = (filename) => {
       format.printf((info) => `${moment().format(DATE_FORMAT.DATE_FORMAT_YYYY_MM_DD)} ${info.level}: ${info.message}`),
       format.json()
     ),
-    label: path.basename(module.filename),
+    // label: path.basename(module.filename),
     transports: [
       new transports.Console({
-        label: getLabel(filename), // path.basename(module.filename),
+        // label: getLabel(filename), // path.basename(module.filename),
         level: 'debug',
         format: winston.format.combine(
           format.colorize(),
@@ -48,6 +47,6 @@ const Logger = (filename) => {
   });
 };
 
-module.exports = Logger;
+export default Logger;
 // export { Logger };
 // level -- error > warn > info > verbose > debug > silly

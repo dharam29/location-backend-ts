@@ -1,11 +1,11 @@
-import {Sequelize} from 'sequelize';
+import { Sequelize } from 'sequelize';
 const { Op }: any = Sequelize;
 
-const Logger =  require('../utils/logger');
+import Logger from '../utils/logger';
 import { Location } from '../models/location';
-import {sequelize} from '../sequelize';
+import { sequelize } from '../sequelize';
 
-const logger = Logger;
+const logger = Logger(module.filename);
 
 export const addLocation = async (req, res) => {
   // create a temporary transaction for DB operation
@@ -41,11 +41,10 @@ export const updateLocation = async (req, res) => {
   // create a temporary transaction for DB operation
   let transaction = await sequelize.transaction();
   try {
-    const locationId = req.params.locationId;
+    const locationId = +req.params.locationId;
     let payload = req.body;
     payload.updatedOn = new Date().toISOString();
-
-    const locationData = await Location.findByPk(locationId, { raw: true });
+    const locationData = await Location.findOne({ where: { id: locationId } });
     if (locationData) {
       const result = await Location.update(payload, {
         where: {
@@ -91,7 +90,7 @@ export const locationDetail = async (req, res) => {
     if (!locationData) {
       response = { data: {} };
     }
-    else{
+    else {
       response = { data: locationData };
     }
     return res.status(200).send(response)
@@ -113,10 +112,10 @@ export const locationList = async (req, res) => {
       offset = req.query.offset;
     }
 
-    const whereCondition : any = [];
+    const whereCondition: any = [];
 
     // search location by location name
-    if(req.query.search){
+    if (req.query.search) {
       const searchValue = req.query.search;
       const searchKey = 'locName';
       whereCondition.push({ [searchKey]: { [Op.iLike]: `%${searchValue}%` } });
@@ -157,7 +156,7 @@ export const removeLocation = async (req, res) => {
     let location = await Location.findByPk(locationId, { raw: true });
 
     if (location != null) {
-      await Location.update({isDeleted: true}, {
+      await Location.update({ isDeleted: true }, {
         where: {
           id: locationId,
         },
