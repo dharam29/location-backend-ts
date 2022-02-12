@@ -1,1 +1,11 @@
-# loc-be-ts
+# sequelize-typescript-starter
+
+## Installation
+```
+npm install
+```
+
+## Start server
+```
+npm start
+```
