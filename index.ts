@@ -2,7 +2,7 @@ import {createServer} from 'http';
 import {app} from './lib/app';
 import {sequelize} from './lib/sequelize';
 
-const port =  8090;
+const port =  80;
 
 (async () => {
   await sequelize.sync({force: true});
