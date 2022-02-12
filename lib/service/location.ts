@@ -133,7 +133,7 @@ export const locationList = async (req, res) => {
     });
 
     // send result to UI app
-    return res.status(200).send({
+    return res.status(200).json({
       count: locationData.count,
       data: locationData.rows
     })
