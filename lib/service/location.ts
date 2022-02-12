@@ -46,24 +46,17 @@ export const updateLocation = async (req, res) => {
     payload.updatedOn = new Date().toISOString();
     const locationData = await Location.findOne({ where: { id: locationId } });
     if (locationData) {
-      const result = await Location.update(payload, {
+      await Location.update(payload, {
         where: {
           id: locationId,
         },
-        returning: true
       });
-
-      if (!result) {
-        // roll back current DB operation if any error occurs & send response to UI app
-        await transaction.rollback();
-        return res.status(500).send({
-          result: 'Server Error'
-        });
-      }
 
       // commit current DB operation on successful processing & send response to UI app
       await transaction.commit();
-      return res.status(200).send(result);
+      return res.status(200).send({
+        result: 'Location Updated'
+      });
     } else {
       return res.status(200).send({
         data: "Location Not Found"
