@@ -3,7 +3,7 @@ import {addLocation, updateLocation, locationDetail, locationList, removeLocatio
 
 const router = Router();
 
-const API = '/api/v1';
+const API = 'api/v1';
 
 router
   .post(`${API}/location`, addLocation)
