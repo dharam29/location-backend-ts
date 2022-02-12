@@ -1,6 +1,6 @@
 import {createServer} from 'http';
-import {app} from './lib/app';
-import {sequelize} from './lib/sequelize';
+import {app} from './app';
+import {sequelize} from './sequelize';
 
 const port = process.env.PORT || 8090;
 

@@ -8,6 +8,8 @@
     "emitDecoratorMetadata": true,
     "noUnusedLocals": true,
     "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "lib",
     "declaration": false,
     "pretty": true,
     "strictNullChecks": true,
@@ -16,7 +18,7 @@
   },
   "include": [
     "lib/**/*.ts",
-    "index.ts"
+    "lib/index.ts"
   ],
   "exclude": [
     "node_modules"

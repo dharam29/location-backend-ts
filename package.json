@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "node --require ts-node/register index.ts"
+    "start": "node --require ts-node/register lib/index.ts"
   },
   "author": "",
   "license": "ISC",
