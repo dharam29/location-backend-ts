@@ -105,7 +105,6 @@ export const locationDetail = async (req, res) => {
 };
 
 export const locationList = async (req, res) => {
-  console.log(req, "---req---108")
   try {
     const limit = req.query.limit || 5;
     let offset = 0;
@@ -132,7 +131,7 @@ export const locationList = async (req, res) => {
       raw: true,
       logging: false
     });
-console.log(locationData, "---locationData---135")
+
     // send result to UI app
     return res.status(200).json({
       count: locationData.count,
@@ -140,7 +139,6 @@ console.log(locationData, "---locationData---135")
     })
 
   } catch (error) {
-    console.error(error)
     logger.error(JSON.stringify(error))
     // send error response if any error occurs
     return res.status(500).send({
