@@ -2,7 +2,7 @@ import {Sequelize} from 'sequelize';
 const { Op }: any = Sequelize;
 
 import Logger from '../utils/logger';
-import { LocationModel } from '../models/location';
+import { Location } from '../models/location';
 import {sequelize} from '../sequelize';
 
 const logger = Logger;
@@ -13,7 +13,7 @@ export const addLocation = async (req, res) => {
   try {
     const payload = req.body;
 
-    const result = await LocationModel.create(payload, { transaction });
+    const result = await Location.create(payload, { transaction });
 
     if (!result) {
       // roll back current DB operation if any error occurs & send response to UI app
@@ -45,9 +45,9 @@ export const updateLocation = async (req, res) => {
     let payload = req.body;
     payload.updatedOn = new Date().toISOString();
 
-    const locationData = await LocationModel.findByPk(locationId, { raw: true });
+    const locationData = await Location.findByPk(locationId, { raw: true });
     if (locationData) {
-      const result = await LocationModel.update(payload, {
+      const result = await Location.update(payload, {
         where: {
           id: locationId,
         },
@@ -85,7 +85,7 @@ export const locationDetail = async (req, res) => {
     const locationId = req.params.locationId
     let response;
 
-    let locationData = await LocationModel.findByPk(locationId, { raw: true });
+    let locationData = await Location.findByPk(locationId, { raw: true });
 
     // set empty object when no data exist for locationId
     if (!locationData) {
@@ -122,7 +122,7 @@ export const locationList = async (req, res) => {
       whereCondition.push({ [searchKey]: { [Op.iLike]: `%${searchValue}%` } });
     }
 
-    const locationData = await LocationModel.findAndCountAll({
+    const locationData = await Location.findAndCountAll({
       where: {
         [Op.and]: whereCondition
       },
@@ -154,10 +154,10 @@ export const removeLocation = async (req, res) => {
     const locationId = req.params.locationId;
     let response;
 
-    let location = await LocationModel.findByPk(locationId, { raw: true });
+    let location = await Location.findByPk(locationId, { raw: true });
 
     if (location != null) {
-      await LocationModel.update({isDeleted: true}, {
+      await Location.update({isDeleted: true}, {
         where: {
           id: locationId,
         },

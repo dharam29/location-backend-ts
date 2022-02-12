@@ -1,5 +1,5 @@
 import {Sequelize} from 'sequelize-typescript';
-import { LocationModel } from './models/location';
+import { Location } from './models/location';
 
 const sequelize = new Sequelize("ddj8eekbkbq1q2","obshfybgymvctv","2ab13aad96747deb6cdd159c003905820e8585793262822f92b62b63ff380620", {
   host: "ec2-52-204-72-14.compute-1.amazonaws.com",
@@ -24,6 +24,6 @@ const sequelize = new Sequelize("ddj8eekbkbq1q2","obshfybgymvctv","2ab13aad96747
   // logging: false
 });
 
-sequelize.addModels([LocationModel]);
+sequelize.addModels([Location]);
 
 export {sequelize};

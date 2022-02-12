@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {addLocation, updateLocation, locationDetail, locationList, removeLocation} from './location';
+import {addLocation, updateLocation, locationDetail, locationList, removeLocation} from '../service/location';
 
 const router = Router();
 

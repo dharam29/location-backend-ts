@@ -1,9 +1,7 @@
-// import {Sequelize, DataTypes} from 'sequelize';
-// import db from '../sequelize_connection';
 import {Model, Column, Table, PrimaryKey, AutoIncrement} from "sequelize-typescript";
 
 @Table
-export class LocationModel extends Model<LocationModel> {
+export class Location extends Model<Location> {
 
   @PrimaryKey
   @AutoIncrement
@@ -71,4 +69,4 @@ export class LocationModel extends Model<LocationModel> {
   public updatedOn!: number;
 }
 
-export default LocationModel;
+export default Location;
