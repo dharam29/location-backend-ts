@@ -8,23 +8,21 @@ import { join } from 'path';
 export const app = express();
 
 app.use(cors());
-// middleware for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+const API = '/api/v1';
 
-// middleware for json body parsing
-app.use(bodyParser.json({limit: '5mb'}));
+app.use(API, router)
 
-// enable corse for all origins
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Expose-Headers", "x-total-count");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
-  res.header("Access-Control-Allow-Headers", "Content-Type,authorization");
-
-  next();
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Cache-Control, Pragma, Origin, Authorization, Content-Type, Content-Disposition, X-Requested-With'
+  );
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, OPTIONS');
+  return next();
 });
-
-app.use(router)
 
 app.use(express.static(join(__dirname,"../", "client")));
 

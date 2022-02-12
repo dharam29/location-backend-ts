@@ -3,20 +3,19 @@ import {addLocation, updateLocation, locationDetail, locationList, removeLocatio
 
 const router = Router();
 
-const API = 'api/v1';
 
 router
-  .post(`${API}/location`, addLocation)
+  .post(`/location`, addLocation)
 
-  .put(`${API}/location/:locationId`, updateLocation)
+  .put(`/location/:locationId`, updateLocation)
 
-  .get(`${API}/location`, locationList)
+  .get(`/location`, locationList)
 
-  .get(`${API}/location/:locationId`, locationDetail)
+  .get(`/location/:locationId`, locationDetail)
 
-  .delete(`${API}/location/:locationId`, removeLocation)
+  .delete(`/location/:locationId`, removeLocation)
 
-  .get(`${API}/health-check`, async (req, res) => {
+  .get(`/health-check`, async (req, res) => {
     res.send('Location api server is healthy');
   });
 
