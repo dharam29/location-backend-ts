@@ -8,8 +8,8 @@ import { join } from 'path';
 export const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({ limit: "1000mb" }));
 const API = '/api/v1';
 
 app.use(API, router)
