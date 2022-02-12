@@ -1,3 +1,4 @@
+import * as cors from 'cors';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as errorhandler from 'strong-error-handler';
@@ -6,6 +7,7 @@ import { join } from 'path';
 
 export const app = express();
 
+app.use(cors);
 // middleware for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 
