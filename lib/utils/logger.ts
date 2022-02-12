@@ -5,7 +5,7 @@ const moment = require('moment');
 const winston = require('winston');
 // require('winston-daily-rotate-file');
 
-const { DATE_FORMAT } = require('./constant');
+const DATE_FORMAT = require('./constant');
 
 const getLabel = (callingModule) => {
   const parts = callingModule.split('/');

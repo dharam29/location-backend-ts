@@ -5,6 +5,7 @@ import {sequelize} from './sequelize';
 const port = process.env.PORT || 8090;
 
 (async () => {
+ try {
   await sequelize.sync({force: true});
 
   createServer(app)
@@ -12,5 +13,9 @@ const port = process.env.PORT || 8090;
       port,
       () => console.info(`Server running on port ${port}`)
     );
+ } catch (error) {
+   console.error(error);
+   
+ }
 })();
 

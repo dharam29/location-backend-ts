@@ -7,7 +7,7 @@ import { join } from 'path';
 
 export const app = express();
 
-app.use(cors);
+app.use(cors());
 // middleware for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 

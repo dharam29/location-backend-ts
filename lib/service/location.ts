@@ -1,7 +1,7 @@
 import {Sequelize} from 'sequelize';
 const { Op }: any = Sequelize;
 
-import Logger from '../utils/logger';
+const Logger =  require('../utils/logger');
 import { Location } from '../models/location';
 import {sequelize} from '../sequelize';
 

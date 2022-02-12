@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "node --require ts-node/register lib/index.ts"
+    "dev": "node --require ts-node/register lib/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
